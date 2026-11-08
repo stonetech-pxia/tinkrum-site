@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tinkrum — Scan or convert images into PDF, Word or Excel</title>
+  <meta name="description" content="Tinkrum is a free, open-source phone app. Scan paper into clean PDF, Word and Excel files, all on your phone, then describe any other app you want it to become.">
+  <meta name="theme-color" content="#f5efe8">
+  <link rel="icon" href="assets/img/logo-mark.png" type="image/png">
+  <link rel="preload" href="assets/fonts/Sora_700Bold.woff" as="font" type="font/woff" crossorigin>
+  <link rel="stylesheet" href="styles.css?v=2">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="3"/><path d="M10.5 18.5h3"/></symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><rect x="3" y="7.5" width="18" height="3.5" rx="1.2"/><path d="M12 7.5V20M12 7.5C10.6 4 6.8 4.6 7.6 6.6c.5 1.2 4.4.9 4.4.9zM12 7.5c1.4-3.5 5.2-2.9 4.4-.9-.5 1.2-4.4.9-4.4.9z"/></symbol>
+    <symbol id="i-noads" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><rect x="7.5" y="9.5" width="9" height="5" rx="1"/><path d="M5.6 5.6l12.8 12.8"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2z"/></symbol>
+  </defs>
+</svg>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="assets/img/logo-mark.png" alt="" width="30" height="30">Tinkrum</a>
+    <a class="link" href="#paper">Paper</a>
+    <a class="link" href="#tink">Make your own</a>
+    <a class="link" href="#promises">Promises</a>
+    <a class="btn small" href="https://github.com/stonetech-pxia/morphing-app"><svg><use href="#i-code"/></svg>GitHub</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ─────────── hero ─────────── -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="kicker">Tinkrum · Paper</p>
+        <h1>Scan or convert images into <em>PDF, Word or Excel</em></h1>
+        <ul class="trust">
+          <li><svg><use href="#i-gift"/></svg>Free</li>
+          <li><svg><use href="#i-noads"/></svg>No ads</li>
+          <li><svg><use href="#i-phone"/></svg>Files never leave your phone</li>
+        </ul>
+      </div>
+
+      <div class="stack" aria-label="Screens from the Paper app: home, PDF preview and spreadsheet editor">
+        <figure class="phone p2"><img src="assets/img/paper-pdf.webp" width="640" height="1391" alt="A scanned invoice open in the PDF preview, with Edit, Share and Save buttons underneath"></figure>
+        <figure class="phone p3"><img src="assets/img/paper-excel.webp" width="640" height="1391" alt="A scanned table opened as a spreadsheet, with one cell selected for editing"></figure>
+        <figure class="phone p1"><img src="assets/img/paper-home.webp" width="640" height="1391" alt="The Paper home screen: Scan to PDF, Scan a document to Word, Scan a table to Excel, Combine documents, and Open files"></figure>
+      </div>
+    </div>
+  </section>
+
+  <hr class="tear">
+
+  <!-- ─────────── 01 Paper ─────────── -->
+  <section class="sec" id="paper">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker">01 · Paper</p>
+        <h2>These are Paper's main tools.</h2>
+      </div>
+
+      <div class="formats">
+        <article class="format">
+          <span class="tag">PDF</span>
+          <h3>Scan to PDF</h3>
+          <p>Straightened, searchable, ready to share.</p>
+        </article>
+        <article class="format">
+          <span class="tag">WORD</span>
+          <h3>Scan to Word</h3>
+          <p>A printed page you can edit.</p>
+        </article>
+        <article class="format">
+          <span class="tag">EXCEL</span>
+          <h3>Scan a table to Excel</h3>
+          <p>Rows and columns, not a picture.</p>
+        </article>
+        <article class="format">
+          <span class="tag">MERGE</span>
+          <h3>Combine documents</h3>
+          <p>PDFs and photos in one file.</p>
+        </article>
+      </div>
+
+      <details class="more">
+        <summary class="btn">Other tools</summary>
+        <div class="toolsets">
+          <h4 class="tools-h">PDF</h4>
+          <div class="toolgrid">
+            <article class="format mini"><h3>Merge PDFs</h3><p>Combine PDFs into one, in the order you choose.</p></article>
+            <article class="format mini"><h3>PDFs and images into one</h3><p>Mix PDFs and photos into a single PDF.</p></article>
+            <article class="format mini"><h3>Images to PDF</h3><p>Put your photos into one PDF.</p></article>
+            <article class="format mini"><h3>Scan photos to PDF</h3><p>Turn photos of paper into straight PDF pages.</p></article>
+            <article class="format mini"><h3>Word / Excel / PPT to PDF</h3><p>Office files to PDF. On Android, Word only.</p></article>
+            <article class="format mini"><h3>Make PDF smaller</h3><p>Shrink a PDF to a size you set. Text stays selectable.</p></article>
+            <article class="format mini"><h3>Arrange pages</h3><p>Pick, remove, reorder and rotate pages.</p></article>
+            <article class="format mini"><h3>Keep pages</h3><p>Keep only some pages: odd, even or a range.</p></article>
+            <article class="format mini"><h3>Rotate pages</h3><p>Turn some or all pages clockwise.</p></article>
+            <article class="format mini"><h3>Split</h3><p>Cut a PDF every N pages, or by page ranges.</p></article>
+            <article class="format mini"><h3>Page numbers</h3><p>Add page numbers to every page.</p></article>
+            <article class="format mini"><h3>Fill in a form</h3><p>Type into a PDF form on your phone.</p></article>
+            <article class="format mini"><h3>Sign a PDF</h3><p>Draw or pick a signature and place it on a page.</p></article>
+            <article class="format mini"><h3>PDF to images</h3><p>Save every page as a JPG.</p></article>
+            <article class="format mini"><h3>Get text</h3><p>Read a PDF's text, scanned pages too.</p></article>
+            <article class="format mini"><h3>Remove a password</h3><p>Type the password, get a PDF without one.</p></article>
+            <article class="format mini"><h3>Add a password</h3><p>Lock a PDF. The password is never saved.</p></article>
+            <article class="format mini"><h3>Text stamp</h3><p>Stamp text like COPY or Confidential on pages.</p></article>
+            <article class="format mini"><h3>Records to a PDF report</h3><p>Turn your records into a PDF report, list or receipt.</p></article>
+          </div>
+          <h4 class="tools-h">Images</h4>
+          <div class="toolgrid">
+            <article class="format mini"><h3>Mark up photo</h3><p>Add text, arrows, boxes and drawing.</p></article>
+            <article class="format mini"><h3>Adjust photo</h3><p>Auto-fix colour, or set brightness and contrast.</p></article>
+            <article class="format mini"><h3>Remove background</h3><p>Keep the subject on a transparent or solid background.</p></article>
+            <article class="format mini"><h3>Compress photos</h3><p>Shrink photos to a size you choose.</p></article>
+            <article class="format mini"><h3>Convert format</h3><p>Turn HEIC, PNG or WebP into JPG, PNG or WebP.</p></article>
+            <article class="format mini"><h3>HEIC to JPG</h3><p>Turn iPhone HEIC photos into JPG.</p></article>
+            <article class="format mini"><h3>Resize</h3><p>Make photos smaller by edge, width or percent.</p></article>
+            <article class="format mini"><h3>Crop</h3><p>Frame each photo, with a locked ratio if you like.</p></article>
+            <article class="format mini"><h3>Rotate or flip</h3><p>Turn or mirror photos.</p></article>
+            <article class="format mini"><h3>Remove location</h3><p>Strip location and camera info.</p></article>
+            <article class="format mini"><h3>Long image</h3><p>Stack screenshots into one long image.</p></article>
+            <article class="format mini"><h3>Photo grid</h3><p>Arrange photos in a 2 to 4 column grid.</p></article>
+            <article class="format mini"><h3>Animated GIF</h3><p>Turn photos into a looping GIF.</p></article>
+            <article class="format mini"><h3>Hide parts</h3><p>Blur or black out names, numbers or faces.</p></article>
+            <article class="format mini"><h3>Watermark</h3><p>Put text in a corner or repeat it across.</p></article>
+            <article class="format mini"><h3>ID photo</h3><p>Frame your face, get the official size.</p></article>
+            <article class="format mini"><h3>ID photos to print</h3><p>Lay ID photos out on a sheet to print.</p></article>
+            <article class="format mini"><h3>Straighten photos of paper</h3><p>Find the page edges and straighten the photo.</p></article>
+          </div>
+          <h4 class="tools-h">Video</h4>
+          <div class="toolgrid">
+            <article class="format mini"><h3>Export SRT captions</h3><p>Turn speech into a .srt subtitle file.</p></article>
+            <article class="format mini"><h3>Change video speed</h3><p>Play from 0.5× to 4× and export an MP4.</p></article>
+            <article class="format mini"><h3>Crop video to a shape</h3><p>Center-crop to 9:16, 1:1, 4:5 or 16:9.</p></article>
+            <article class="format mini"><h3>Rotate video</h3><p>Turn a video by 90, 180 or 270 degrees.</p></article>
+            <article class="format mini"><h3>Change background music</h3><p>Use your own music as the soundtrack.</p></article>
+            <article class="format mini"><h3>Remove video sound</h3><p>Export an MP4 with no sound.</p></article>
+            <article class="format mini"><h3>Save a video frame</h3><p>Pick a moment and save it as a JPG.</p></article>
+            <article class="format mini"><h3>Join videos</h3><p>Put videos together in the order you choose.</p></article>
+            <article class="format mini"><h3>Make videos smaller</h3><p>Shrink to a size or quality you choose.</p></article>
+            <article class="format mini"><h3>Convert to MP4</h3><p>Make MOV and HEVC videos open anywhere.</p></article>
+            <article class="format mini"><h3>Trim a video</h3><p>Keep only the part you pick.</p></article>
+            <article class="format mini"><h3>Video to GIF</h3><p>Pick a clip and turn it into a GIF.</p></article>
+          </div>
+          <h4 class="tools-h">Audio</h4>
+          <div class="toolgrid">
+            <article class="format mini"><h3>Reduce speech noise</h3><p>Clean background noise out of speech.</p></article>
+            <article class="format mini"><h3>Adjust volume</h3><p>Even out the volume, or set it in dB.</p></article>
+            <article class="format mini"><h3>Speech to text</h3><p>Turn a recording into text on your phone.</p></article>
+            <article class="format mini"><h3>Record</h3><p>Record audio on your phone.</p></article>
+            <article class="format mini"><h3>Make audio smaller</h3><p>Shrink recordings to a size or quality.</p></article>
+            <article class="format mini"><h3>Convert audio</h3><p>Convert recordings to M4A, MP3 or WAV.</p></article>
+            <article class="format mini"><h3>Trim audio</h3><p>Keep only the part you pick on a waveform.</p></article>
+            <article class="format mini"><h3>Join recordings</h3><p>Put recordings together in order.</p></article>
+            <article class="format mini"><h3>Text to speech</h3><p>Read text aloud and save it as audio.</p></article>
+            <article class="format mini"><h3>Sound from a video</h3><p>Save only the sound of a video.</p></article>
+          </div>
+          <h4 class="tools-h">Text</h4>
+          <div class="toolgrid">
+            <article class="format mini"><h3>Text from photos</h3><p>Read printed text from photos.</p></article>
+            <article class="format mini"><h3>Scan and get text</h3><p>Scan a page and get its text.</p></article>
+            <article class="format mini"><h3>Translate text</h3><p>Translate text on your phone, in 20 languages.</p></article>
+            <article class="format mini"><h3>Translate text in photos</h3><p>Read the text in a photo, then translate it.</p></article>
+            <article class="format mini"><h3>Translate a PDF</h3><p>Translate the text in a PDF.</p></article>
+            <article class="format mini"><h3>Text to PDF</h3><p>Turn typed or pasted text into a PDF.</p></article>
+          </div>
+          <h4 class="tools-h">ZIP</h4>
+          <div class="toolgrid">
+            <article class="format mini"><h3>ZIP files</h3><p>Pack any files into one ZIP.</p></article>
+            <article class="format mini"><h3>ZIP photos</h3><p>Pack photos into one ZIP.</p></article>
+            <article class="format mini"><h3>Unzip</h3><p>Take the files out of a ZIP.</p></article>
+          </div>
+          <h4 class="tools-h">QR codes</h4>
+          <div class="toolgrid">
+            <article class="format mini"><h3>Make a QR code</h3><p>Turn a link or text into a QR code.</p></article>
+            <article class="format mini"><h3>Wi-Fi QR code</h3><p>Share your Wi-Fi with a scan.</p></article>
+            <article class="format mini"><h3>Read a QR code</h3><p>Read QR codes in photos and screenshots.</p></article>
+          </div>
+        </div>
+      </details>
+
+      <div class="model">
+        <div>
+          <p class="kicker">On-device model</p>
+          <h3>It even files things for you.</h3>
+          <p class="lede">Scan a receipt or a business card. A small model on your phone suggests the record and the details.</p>
+          <ol class="steps">
+            <li><span>Scan, or open a file.</span></li>
+            <li><span>The model suggests the record, and values like merchant, date and total.</span></li>
+            <li><span>You tap to accept. Nothing is saved without you.</span></li>
+          </ol>
+          <p class="fine">Optional one-time download (Qwen3.5 2B, about 1.3&nbsp;GB). Without it, built-in rules still suggest.</p>
+        </div>
+        <figure class="phone"><img src="assets/img/records.webp" width="640" height="1391" alt="Intro screen: scan or open a file, then save it to the record it belongs in. Records shown: Receipts, Business cards, Contracts" loading="lazy"></figure>
+      </div>
+
+      <div class="getfile">
+        <a class="btn" href="assets/apps/tinkrum-app-clay.json" download>Download the Paper app file</a>
+        <a href="#import">How to import</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── 02 Tink ─────────── -->
+  <section class="sec tink" id="tink">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker">02 · Tink</p>
+        <h2>Then make it any app you like.</h2>
+        <p class="lede">Tell Tink what you want in one sentence. It rebuilds the screens.</p>
+      </div>
+
+      <ul class="points">
+        <li>
+          <h3>Say it</h3>
+          <p><q>Add the visa photo quick action. Switch to neon style.</q></p>
+        </li>
+        <li>
+          <h3>Check it</h3>
+          <p>Look changes wait in a draft. Everything can be undone.</p>
+        </li>
+        <li>
+          <h3>Stay in control</h3>
+          <p>Tink changes the app, never your files.</p>
+        </li>
+      </ul>
+
+      <div class="trio">
+        <figure>
+          <div class="phone"><img src="assets/img/tink-before-v2.webp" width="640" height="1391" alt="The Paper home screen before the change: four scan buttons, Open files and a Toolbox row" loading="lazy"></div>
+          <figcaption>Before</figcaption>
+        </figure>
+        <figure>
+          <div class="phone"><img src="assets/img/tink-ask-v2.webp" width="640" height="1391" alt="The Tink panel with two instructions typed in one sentence: Add the visa photo quick action. Switch to neon style" loading="lazy"></div>
+          <figcaption>You ask</figcaption>
+        </figure>
+        <figure>
+          <div class="phone"><img src="assets/img/tink-after-v2.webp" width="640" height="1391" alt="The same home screen after both changes: a neon look and a new Visa / ID photo card with a Start button at the top" loading="lazy"></div>
+          <figcaption>After</figcaption>
+        </figure>
+      </div>
+
+      <div class="looks">
+        <h3>You decide what your app looks like.</h3>
+        <div class="looks-row">
+          <figure class="phone"><img src="assets/img/skin-neon.webp" width="420" height="913" alt="Wallet in a neon look" loading="lazy"></figure>
+          <figure class="phone"><img src="assets/img/skin-pastel.webp" width="420" height="913" alt="Wallet in a pastel look" loading="lazy"></figure>
+          <figure class="phone"><img src="assets/img/skin-editorial.webp" width="420" height="913" alt="Wallet in an editorial look" loading="lazy"></figure>
+          <figure class="phone"><img src="assets/img/skin-brutalist.webp" width="420" height="913" alt="Wallet in a brutalist look" loading="lazy"></figure>
+          <figure class="phone"><img src="assets/img/skin-y2k.webp" width="420" height="913" alt="Wallet in a Y2K chrome look" loading="lazy"></figure>
+        </div>
+      </div>
+
+      <div class="made">
+        <h3>Use your imagination. Build the tool that suits you best.</h3>
+        <div class="apps">
+          <article class="app">
+            <div class="stage s-wallet"><div class="phone"><img src="assets/img/app-wallet.webp" width="640" height="1391" alt="Wallet: budgets per category, with what is spent and what is left" loading="lazy"></div></div>
+            <div class="body">
+              <h4>Wallet</h4>
+              <p>Budgets, bills and net worth.</p>
+              <a class="dl" href="assets/apps/tinkrum-app-wallet.json" download>Download app file</a>
+            </div>
+          </article>
+          <article class="app">
+            <div class="stage s-focus"><div class="phone"><img src="assets/img/app-focus.webp" width="640" height="1391" alt="~/focus: today's tasks with Done buttons and a focus timer" loading="lazy"></div></div>
+            <div class="body">
+              <h4>~/focus</h4>
+              <p>Tasks, repeats and a focus timer.</p>
+              <a class="dl" href="assets/apps/tinkrum-app-focus.json" download>Download app file</a>
+            </div>
+          </article>
+          <article class="app">
+            <div class="stage s-lisbon"><div class="phone"><img src="assets/img/app-lisbon.webp" width="640" height="1391" alt="Lisbon trip: bookings, the next booking countdown and a day-by-day itinerary" loading="lazy"></div></div>
+            <div class="body">
+              <h4>Lisbon</h4>
+              <p>Plans, bookings and packing lists.</p>
+              <a class="dl" href="assets/apps/tinkrum-app-trip.json" download>Download app file</a>
+            </div>
+          </article>
+          <article class="app">
+            <div class="stage s-museum"><div class="phone"><img src="assets/img/app-museum.webp" width="640" height="1391" alt="An exhibition guide, Hokusai: Beyond the Wave, with a woodblock print as the page backdrop" loading="lazy"></div></div>
+            <div class="body">
+              <h4>Museum</h4>
+              <p>An exhibition guide on your own artwork.</p>
+              <p class="dl none">No file: it uses your pictures.</p>
+            </div>
+          </article>
+        </div>
+        <p class="import-note" id="import">To use a file: Settings → My presets → Import from a file. It is added as a new app, and you can undo it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── promises ─────────── -->
+  <section class="sec promises" id="promises">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker">Our promises</p>
+        <h2>Open. Local. <span>Free.</span></h2>
+      </div>
+
+      <div class="pgrid">
+        <article class="pcard">
+          <svg><use href="#i-code"/></svg>
+          <h3>Open source</h3>
+          <p>All of it is on <a href="https://github.com/stonetech-pxia/morphing-app">GitHub</a> under AGPL-3.0. Read it, build it, fork it.</p>
+        </article>
+        <article class="pcard">
+          <svg><use href="#i-phone"/></svg>
+          <h3>Stays on your phone</h3>
+          <p>Scanning, text recognition, the small model and your records run on your phone. Your files never leave it.</p>
+        </article>
+        <article class="pcard">
+          <svg><use href="#i-heart"/></svg>
+          <h3>Free, forever</h3>
+          <p>No ads, no account, no subscription for anything that runs on your phone.</p>
+        </article>
+      </div>
+
+      <div class="notes">
+        <p>Tink's hosted AI has a free monthly allowance. With your own API key or the offline rules, there's no limit.</p>
+        <p>During the beta, what you tell Tink and the app layout are stored to improve the project. Files and records are never sent.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="assets/img/logo-mark.png" alt="" width="30" height="30">Tinkrum</a>
+    <nav>
+      <a href="https://github.com/stonetech-pxia/morphing-app">Source on GitHub</a>
+      <a href="https://github.com/stonetech-pxia/morphing-app/blob/main/LICENSE">AGPL-3.0 licence</a>
+      <a href="https://github.com/stonetech-pxia/morphing-app/issues">Report an issue</a>
+    </nav>
+    <small>No trackers, no cookies, nothing loaded from other servers. Screens show sample data.</small>
+  </div>
+</footer>
+
+</body>
+</html>
