@@ -1,6 +1,6 @@
 # tinkrum-site
 
-The Tinkrum portal: static pages (`index.html`, `make.html` + `styles.css`), no build step, no third-party requests. `index.html` has no JavaScript; `make.html` runs the app-file checker locally in the browser.
+The Tinkrum portal: static pages (`index.html`, `make.html` + `styles.css`), no build step, no third-party requests. `index.html` has no JavaScript; `make.html` runs the app-file checker locally in the browser, and `preview.js` draws a clickable sketch of a file that passes (one phone frame, the app's own colours, its pages and bar).
 
 - Preview: `python3 -m http.server 8830` in this folder, then open http://127.0.0.1:8830/
 - Fonts (Sora, Karla) are the app's own, subset and self-hosted in `assets/fonts/`.

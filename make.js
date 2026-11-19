@@ -4,6 +4,7 @@
   const text = document.getElementById('file-text');
   const result = document.getElementById('result');
   const pick = document.getElementById('file-pick');
+  const preview = document.getElementById('preview');
 
   function el(tag, cls, content) {
     const node = document.createElement(tag);
@@ -37,6 +38,16 @@
   function show(check) {
     result.replaceChildren();
     result.hidden = false;
+    preview.replaceChildren();
+    preview.hidden = true;
+    if (check.ok && typeof window.tinkrumPreview === 'function') {
+      try {
+        preview.append(window.tinkrumPreview(check.file));
+        preview.hidden = false;
+      } catch (e) {
+        console.error(e);
+      }
+    }
     result.className = `result ${check.ok ? 'ok' : 'bad'}`;
     if (check.ok) {
       const s = check.summary;

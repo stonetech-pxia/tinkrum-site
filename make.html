@@ -7,7 +7,7 @@
   <meta name="description" content="Ask Claude, ChatGPT or any other AI to write a Tinkrum app file, check it here, then paste it into Tinkrum.">
   <meta name="theme-color" content="#f5efe8">
   <link rel="icon" href="assets/img/logo-mark.png" type="image/png">
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
 
@@ -58,7 +58,7 @@
       <div class="sec-head">
         <p class="kicker">Check a file</p>
         <h2>Does it import?</h2>
-        <p class="lede">Paste what your AI wrote. This runs the same checks as Tinkrum, right here in your browser: nothing you paste is sent anywhere.</p>
+        <p class="lede">Paste what your AI wrote. This runs the same checks as Tinkrum, right here in your browser, and shows a sketch of the app you can tap through. Nothing you paste is sent anywhere.</p>
       </div>
 
       <div class="checker">
@@ -70,6 +70,7 @@
           <input class="sr" type="file" id="file-pick" accept=".json,application/json,text/plain">
         </div>
         <div id="result" class="result" aria-live="polite" hidden></div>
+        <div id="preview" hidden></div>
         <noscript><p class="import-note">The checker needs JavaScript. You can also paste the file into Tinkrum directly: it runs the same checks.</p></noscript>
       </div>
     </div>
@@ -89,6 +90,7 @@
 </footer>
 
 <script src="assets/agent/checker.js" defer></script>
+<script src="preview.js" defer></script>
 <script src="make.js" defer></script>
 </body>
 </html>
