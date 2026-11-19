@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tinkrum — Make an app with your own AI</title>
+  <meta name="description" content="Ask Claude, ChatGPT or any other AI to write a Tinkrum app file, check it here, then paste it into Tinkrum.">
+  <meta name="theme-color" content="#f5efe8">
+  <link rel="icon" href="assets/img/logo-mark.png" type="image/png">
+  <link rel="stylesheet" href="styles.css?v=3">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="assets/img/logo-mark.png" alt="" width="30" height="30">Tinkrum</a>
+    <a class="link" href="#ask">Ask your AI</a>
+    <a class="link" href="#check">Check a file</a>
+    <a class="btn small" href="https://github.com/stonetech-pxia/morphing-app">GitHub</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="sec" id="ask">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker">Make your own · with any AI</p>
+        <h2>Ask Claude or ChatGPT for an app.</h2>
+        <p class="lede">Your AI writes a Tinkrum app file: the lists, pages and style of a new app. You paste it into Tinkrum. It never contains your data, and you can undo it.</p>
+      </div>
+
+      <ol class="points steps">
+        <li>
+          <h3>Give it the guide</h3>
+          <p>Download the guide and attach it to a new chat. It tells the AI exactly what Tinkrum can draw.</p>
+          <p class="getfile"><a class="btn small" href="assets/agent/tinkrum-app-guide.md" download>Download the guide</a></p>
+        </li>
+        <li>
+          <h3>Say what you want</h3>
+          <p>In your own words. For example:</p>
+          <p class="ask" id="example-ask">Using the attached Tinkrum guide, make me a Tinkrum app file to track my plants: when I water them, which room they're in, and a reminder every Sunday.</p>
+          <p><button class="btn small" type="button" data-copy="example-ask">Copy this</button></p>
+        </li>
+        <li>
+          <h3>Paste it into Tinkrum</h3>
+          <p>Copy the JSON it gives you. In Tinkrum, open <strong>Settings → My presets → Paste from clipboard</strong>. You see what it adds before it is added.</p>
+        </li>
+      </ol>
+
+      <p class="import-note">Don't share anything private with the AI: it only needs to know what you want to keep track of, not the entries themselves. For developers: <a href="assets/agent/tinkrum-app.schema.json">JSON Schema</a> · <a href="assets/agent/example-plants.json">example app file</a>.</p>
+    </div>
+  </section>
+
+  <hr class="tear">
+
+  <section class="sec" id="check">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker">Check a file</p>
+        <h2>Does it import?</h2>
+        <p class="lede">Paste what your AI wrote. This runs the same checks as Tinkrum, right here in your browser: nothing you paste is sent anywhere.</p>
+      </div>
+
+      <div class="checker">
+        <label class="sr" for="file-text">App file</label>
+        <textarea id="file-text" spellcheck="false" placeholder='{ "format": "tinkrum-app", … }'></textarea>
+        <div class="checker-bar">
+          <button class="btn" type="button" id="check-btn">Check</button>
+          <label class="btn small ghost" for="file-pick">Open a .json file</label>
+          <input class="sr" type="file" id="file-pick" accept=".json,application/json,text/plain">
+        </div>
+        <div id="result" class="result" aria-live="polite" hidden></div>
+        <noscript><p class="import-note">The checker needs JavaScript. You can also paste the file into Tinkrum directly: it runs the same checks.</p></noscript>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="assets/img/logo-mark.png" alt="" width="30" height="30">Tinkrum</a>
+    <nav>
+      <a href="https://github.com/stonetech-pxia/morphing-app">Source on GitHub</a>
+      <a href="https://github.com/stonetech-pxia/morphing-app/blob/main/LICENSE">AGPL-3.0 licence</a>
+      <a href="https://github.com/stonetech-pxia/morphing-app/issues">Report an issue</a>
+    </nav>
+    <small>No trackers, no cookies, nothing loaded from other servers. The checker runs in this page.</small>
+  </div>
+</footer>
+
+<script src="assets/agent/checker.js" defer></script>
+<script src="make.js" defer></script>
+</body>
+</html>

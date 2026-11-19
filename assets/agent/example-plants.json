@@ -1,0 +1,321 @@
+{
+  "format": "tinkrum-app",
+  "version": 1,
+  "schemaVersion": 39,
+  "app": {
+    "id": "plants",
+    "name": "Plants",
+    "icon": "🪴",
+    "bar": [
+      "page:plants-home",
+      "page:plants-log",
+      "ai"
+    ],
+    "theme": {
+      "primaryColor": "#3F7D4E",
+      "mode": "system",
+      "colors": {
+        "background": "#F3F6EF",
+        "surface": "#FFFFFF",
+        "text": "#1F2A20",
+        "secondary": "#C08A3E"
+      },
+      "font": "clay",
+      "fontScale": 1,
+      "radius": 22,
+      "density": "comfortable",
+      "cardStyle": "soft",
+      "navStyle": "iconLabel"
+    }
+  },
+  "tables": [
+    {
+      "id": "plants-plants",
+      "name": "Plants",
+      "icon": "🪴",
+      "fields": [
+        {
+          "id": "name",
+          "name": "Name",
+          "required": true,
+          "type": "text"
+        },
+        {
+          "id": "room",
+          "name": "Room",
+          "type": "choice",
+          "options": [
+            {
+              "id": "living",
+              "label": "Living room"
+            },
+            {
+              "id": "kitchen",
+              "label": "Kitchen"
+            },
+            {
+              "id": "balcony",
+              "label": "Balcony"
+            }
+          ]
+        },
+        {
+          "id": "watered",
+          "name": "Last watered",
+          "type": "date",
+          "default": "today"
+        },
+        {
+          "id": "photo",
+          "name": "Photo",
+          "type": "file"
+        }
+      ]
+    },
+    {
+      "id": "plants-care",
+      "name": "Care log",
+      "icon": "💧",
+      "fields": [
+        {
+          "id": "plant",
+          "name": "Plant",
+          "required": true,
+          "type": "link",
+          "table": "plants-plants"
+        },
+        {
+          "id": "what",
+          "name": "What",
+          "required": true,
+          "type": "choice",
+          "options": [
+            {
+              "id": "water",
+              "label": "Watered"
+            },
+            {
+              "id": "feed",
+              "label": "Fed"
+            },
+            {
+              "id": "repot",
+              "label": "Repotted"
+            }
+          ],
+          "default": "water"
+        },
+        {
+          "id": "date",
+          "name": "Date",
+          "type": "date",
+          "default": "today"
+        },
+        {
+          "id": "note",
+          "name": "Note",
+          "type": "text"
+        }
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "id": "plants-home",
+      "title": "Plants",
+      "icon": "🪴",
+      "blocks": [
+        {
+          "id": "h",
+          "look": "header",
+          "show": {
+            "title": "My plants",
+            "subtitle": "Tap a plant when you water it"
+          }
+        },
+        {
+          "id": "start",
+          "look": "notice",
+          "showIf": {
+            "table": "plants-plants",
+            "has": "none"
+          },
+          "show": {
+            "title": "Add your first plant",
+            "text": "Tap **Add a plant** below.",
+            "icon": "lightbulb"
+          }
+        },
+        {
+          "id": "list",
+          "look": "cards",
+          "source": {
+            "table": "plants-plants",
+            "sort": {
+              "field": "watered",
+              "direction": "asc"
+            }
+          },
+          "show": {
+            "title": "name",
+            "subtitles": [
+              "room"
+            ],
+            "trailing": "watered"
+          },
+          "tools": [
+            {
+              "as": "button",
+              "label": "Watered",
+              "do": "set",
+              "table": "plants-plants",
+              "field": "watered",
+              "value": "today"
+            }
+          ]
+        },
+        {
+          "id": "add",
+          "look": "button",
+          "show": {
+            "label": "Add a plant",
+            "variant": "filled",
+            "icon": "plus"
+          },
+          "tools": [
+            {
+              "do": "create",
+              "table": "plants-plants",
+              "ask": "all"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "plants-log",
+      "title": "Care log",
+      "icon": "calendar",
+      "blocks": [
+        {
+          "id": "h",
+          "look": "header",
+          "show": {
+            "title": "Care log"
+          }
+        },
+        {
+          "id": "month",
+          "look": "number",
+          "show": {
+            "label": "Care this month"
+          },
+          "source": {
+            "table": "plants-care",
+            "aggregate": "count",
+            "filter": [
+              {
+                "field": "date",
+                "op": "inPeriod",
+                "value": "thisMonth"
+              }
+            ]
+          }
+        },
+        {
+          "id": "form",
+          "look": "form",
+          "show": {
+            "mode": "inline"
+          },
+          "tools": [
+            {
+              "as": "submit",
+              "label": "Log it",
+              "do": "create",
+              "table": "plants-care",
+              "ask": [
+                "plant",
+                "what",
+                "note"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "log",
+          "look": "list",
+          "source": {
+            "table": "plants-care",
+            "sort": {
+              "field": "date",
+              "direction": "desc"
+            },
+            "limit": 30
+          },
+          "show": {
+            "title": "plant",
+            "subtitles": [
+              "what"
+            ],
+            "trailing": "date"
+          }
+        },
+        {
+          "id": "export",
+          "look": "action",
+          "show": {
+            "shape": "row"
+          },
+          "tools": [
+            {
+              "tool": "plants-export"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "kind": "reminder",
+      "id": "plants-sunday",
+      "title": "Check the plants",
+      "enabled": true,
+      "when": {
+        "every": "week",
+        "days": [
+          7
+        ],
+        "at": "10:00"
+      },
+      "opens": "page:plants-home"
+    },
+    {
+      "kind": "quickAction",
+      "id": "plants-export",
+      "name": "Export the care log",
+      "icon": "share",
+      "steps": [
+        {
+          "id": "rows",
+          "action": "in.records",
+          "params": {
+            "collectionId": "plants-care",
+            "period": "all"
+          }
+        },
+        {
+          "id": "xlsx",
+          "action": "records.toExcel",
+          "params": {}
+        },
+        {
+          "id": "share",
+          "action": "out.share",
+          "params": {}
+        }
+      ]
+    }
+  ]
+}

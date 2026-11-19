@@ -241,3 +241,21 @@ section { position: relative; }
   .made { margin-top: 80px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn { transition: none; } }
+
+/* ───────── make.html: ask your AI, check a file ───────── */
+.steps li { display: flex; flex-direction: column; gap: 10px; }
+.steps .getfile { margin-top: 6px; }
+.steps .ask { color: var(--ink); background: var(--card); border: 1px dashed var(--sand); border-radius: 16px; padding: 14px 16px; font-size: 16px; }
+.btn.ghost { border-color: var(--line); color: var(--muted); cursor: pointer; }
+button.btn { cursor: pointer; }
+.checker { margin-top: 48px; display: grid; gap: 16px; max-width: 54rem; }
+.checker textarea { width: 100%; min-height: 260px; resize: vertical; padding: 18px; border-radius: 18px; border: 1px solid var(--line); background: var(--card); color: var(--ink); font: 400 14px/1.5 ui-monospace, 'SF Mono', Menlo, monospace; }
+.checker textarea:focus { outline: 2px solid var(--clay-bright); outline-offset: 2px; }
+.checker-bar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.result { padding: 22px 24px; border-radius: 18px; background: var(--card); border-left: 4px solid var(--sage); display: grid; gap: 10px; }
+.result.bad { border-left-color: var(--clay-bright); }
+.result h3 { font-size: 22px; }
+.result .note { color: var(--muted); font-size: 16px; }
+.result ul { margin: 0; padding-left: 20px; font: 400 14px/1.55 ui-monospace, 'SF Mono', Menlo, monospace; overflow-wrap: anywhere; }
+.result .btn { justify-self: start; }
+@media (max-width: 1020px) { .steps { grid-template-columns: 1fr; } }
