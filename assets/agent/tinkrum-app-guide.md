@@ -26,7 +26,8 @@ This guide is for an AI assistant (Claude, ChatGPT or any other) that a person a
 ```
 
 - `schemaVersion` is **39**.
-- `app.id`: lowercase letters, digits and "-", starting with a letter, at most 20 characters (for example `"plants"`).
+- **Every id** (the app, pages, blocks, tables, fields, choice options, quick actions, their steps, reminders) is lowercase letters, digits and "-", starts with a letter and has at most 48 characters: `"due-date"`, not `"dueDate"`, `"due_date"` or `"Due date"`. The name people see goes in `name`, `title` or `label`.
+- `app.id`: the same, at most 20 characters (for example `"plants"`).
 - **Every page, table, quick action and reminder id starts with the app id and a dash** (`"plants-home"`, `"plants-care"`). The person's phone already has pages such as `home`, `toolbox` and `files`; an id that is already taken stops the import. Block ids only need to be unique within their page; field ids within their table; option ids within their field.
 - `app.bar`: 1–5 entries, each `"page:<page id>"` of this file or `"ai"` (Tink, the in-app assistant; put it last). The first entry is the page the app opens on. Settings and other system screens are not allowed in an app's bar; the person reaches them from the main Tinkrum home.
 - `app.icon` and page/table icons: an icon name from the list in the reference, or one emoji.
