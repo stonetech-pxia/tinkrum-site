@@ -7,6 +7,7 @@ The Tinkrum portal: static pages (`index.html`, `make.html` + `styles.css`), no 
 - Screens in `assets/img/` are simulator screenshots of the app (sample data), resized to WebP.
 - `assets/apps/` holds the downloadable app files (copies of `packages/core/src/fixtures/portal-apps/` in the app repo).
   The Museum has no file: it is built around pictures the user picks, and app files carry no images.
-- `assets/agent/` holds what other AIs need to write an app file (guide, JSON Schema, example) and `checker.js`,
+- `assets/agent/` holds what other AIs need to write an app file (guide, JSON Schema, example), `checker.js`
+  for the checker page and `tinkrum-check.js` for an AI to run itself (`node tinkrum-check.js app.json`): both are
   the same checks Tinkrum runs on import. Do not edit them here: in the app repo run
   `node scripts/build-agent-kit.mjs ../tinkrum-site` (from the repo root) after the guide changes.
