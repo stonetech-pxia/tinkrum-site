@@ -1100,7 +1100,8 @@ How to use them:
 - A tasks table with a `schedule` field (`{"repeat": "interval", "every": 7}`, or `monthDays` for a fixed day of the month) whose `lastDone` is a rollup with the latest date of a done log.
 - The list sorted by the schedule shows when each is next due and how overdue it is.
 - A row button "Done" creates a done entry for `$row`, which moves the next date on.
-- A number of what is due this week (`filter: [{"field": <schedule>, "op": "due", "value": "thisWeek"}]`).
+- A number of what is due this week (`filter: [{"field": <schedule>, "op": "due", "value": "thisWeek"}]`). `due` takes only `today`, `overdue`, `thisWeek` or `pending`; for this month use `{"op": "inPeriod", "value": "thisMonth"}` on the schedule.
+- A reminder on the schedule (`when: {"each": {"table", "field": <schedule>}, "at"}`) comes on the due day. For a warning days ahead (bills), use a `date` field "Next due" instead of the schedule: the row button "Paid" sets it a month on, `{"do": "set", "field": "due", "value": {"from": "due", "add": 1, "unit": "months"}}`, with `"also": [{"do": "create", "table": <payments>, "values": {"bill": "$row", "date": "today"}}]`, and the reminder is `when: {"before": {"table", "field": "due"}, "days": 3, "at": "09:00"}`.
 
 ```json
 {
