@@ -49,7 +49,7 @@ The reference below is shared with Tink, the assistant inside Tinkrum, which cha
 - `nav.bar` → `app.bar` (with the limits above).
 - `setPackage`, `nav.floating`, `nav.phoneHomeScreen`, `data.calendar` and `containers.desk` belong to the whole phone, not to an app file: leave them out.
 
-Ignore what the reference says about plans, rejections, notes, drafts, earlier requests, "the user's current config", Settings and the home page: those are about Tink's conversation. Some lines mention Tink's rules by number ("rule 45"). Those rules are about Tink's conversation and are not part of this guide: ignore those mentions.
+Ignore what the reference says about plans, rejections, notes, drafts, earlier requests, "the user's current config", Settings and the home page: those are about Tink's conversation. Rule numbers ("rule 45") refer to Tink's rules: the ones about what an app can do are in `tinkrum-app-rules.md` (https://tinkrum.stonetech.dev/assets/agent/tinkrum-app-rules.md), the ones about quick actions in `tinkrum-app-actions.md`. Read a rule there when you need it, for example for a progress bar or a timer on a list row, a date that repeats, one tap that changes two things, or the days left until a date. Rules about Tink's conversation and about the whole phone are left out: when a line mentions a rule you cannot find, ignore that mention.
 
 ## How to work
 
