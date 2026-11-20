@@ -554,10 +554,13 @@
                 {
                   "as": "button",
                   "label": "+$50",
-                  "do": "increment",
-                  "table": "wallet-goals",
-                  "field": "saved",
-                  "by": 50
+                  "do": "create",
+                  "table": "wallet-deposits",
+                  "values": {
+                    "goal": "$row",
+                    "amount": 50,
+                    "date": "today"
+                  }
                 },
                 {
                   "as": "addHere",
@@ -566,7 +569,8 @@
                   "values": "$here",
                   "ask": "all"
                 }
-              ]
+              ],
+              "opens": "wallet-goal"
             }
           ]
         }
@@ -700,6 +704,90 @@
               "values": {
                 "category": "$record"
               },
+              "ask": "all"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wallet-goal",
+      "title": "Goal",
+      "icon": "🎯",
+      "of": "wallet-goals",
+      "blocks": [
+        {
+          "id": "it",
+          "look": "single",
+          "source": {
+            "table": "wallet-goals",
+            "record": "$record"
+          },
+          "show": {
+            "fields": [
+              "name",
+              "target"
+            ]
+          }
+        },
+        {
+          "id": "saved",
+          "look": "number",
+          "show": {
+            "label": "Saved so far"
+          },
+          "source": {
+            "table": "wallet-deposits",
+            "aggregate": "sum",
+            "field": "amount",
+            "filter": [
+              {
+                "field": "goal",
+                "op": "is",
+                "value": "$record"
+              }
+            ]
+          }
+        },
+        {
+          "id": "h",
+          "look": "header",
+          "show": {
+            "title": "Deposits"
+          }
+        },
+        {
+          "id": "list",
+          "look": "list",
+          "source": {
+            "table": "wallet-deposits",
+            "filter": [
+              {
+                "field": "goal",
+                "op": "is",
+                "value": "$record"
+              }
+            ],
+            "sort": {
+              "field": "date",
+              "direction": "desc"
+            },
+            "limit": 10
+          },
+          "show": {
+            "title": "date",
+            "subtitles": [
+              "note"
+            ],
+            "trailing": "amount",
+            "emptyText": "Nothing put aside yet."
+          },
+          "tools": [
+            {
+              "as": "addHere",
+              "do": "create",
+              "table": "wallet-deposits",
+              "values": "$here",
               "ask": "all"
             }
           ]
@@ -860,9 +948,43 @@
         {
           "id": "saved",
           "name": "Saved",
+          "type": "rollup",
+          "table": "wallet-deposits",
+          "via": "goal",
+          "aggregate": "sum",
+          "field": "amount"
+        }
+      ]
+    },
+    {
+      "id": "wallet-deposits",
+      "name": "Deposits",
+      "icon": "💰",
+      "fields": [
+        {
+          "id": "goal",
+          "name": "Goal",
+          "type": "link",
+          "table": "wallet-goals",
+          "required": true
+        },
+        {
+          "id": "amount",
+          "name": "Amount",
           "type": "money",
           "currency": "USD",
-          "default": 0
+          "required": true
+        },
+        {
+          "id": "date",
+          "name": "Date",
+          "type": "date",
+          "default": "today"
+        },
+        {
+          "id": "note",
+          "name": "Note",
+          "type": "text"
         }
       ]
     },
