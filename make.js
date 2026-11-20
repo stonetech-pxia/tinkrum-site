@@ -64,9 +64,20 @@
           ].join(' · '),
         ),
       );
-      if (check.warnings.length > 0) {
-        result.append(el('p', 'note', 'It imports, but some parts will not work yet:'), list(check.warnings));
-        const message = `Tinkrum can import this app file, but these parts will not work yet. Fix them and send the whole file again:\n${check.warnings.map((w) => `- ${w}`).join('\n')}`;
+      const hints = check.hints || [];
+      if (check.warnings.length > 0 || hints.length > 0) {
+        const parts = [];
+        if (check.warnings.length > 0) {
+          result.append(el('p', 'note', 'It imports, but some parts will not work yet:'), list(check.warnings));
+          parts.push(`These parts will not work yet:\n${check.warnings.map((w) => `- ${w}`).join('\n')}`);
+        }
+        if (hints.length > 0) {
+          result.append(el('p', 'note', 'Suggestions to make it easier to use:'), list(hints));
+          parts.push(
+            `These changes would make it easier to use; apply them unless I asked for it this way:\n${hints.map((h) => `- ${h}`).join('\n')}`,
+          );
+        }
+        const message = `Tinkrum can import this app file. ${parts.join('\n')}\nSend the whole file again.`;
         result.append(el('p', '', ''), copyButton('Copy for your AI', message));
       } else {
         result.append(el('p', 'note', 'Copy it, then in Tinkrum: Settings → My presets → Paste from clipboard.'));

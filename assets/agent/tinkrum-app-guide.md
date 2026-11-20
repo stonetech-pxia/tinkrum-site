@@ -35,6 +35,7 @@ This guide is for an AI assistant (Claude, ChatGPT or any other) that a person a
 - `tables`: the app's tables (see **Data**). `pages`: its pages (see **Containers**); there is no page `home` in an app file. `tools`: its quick actions and reminders (see **Tools**).
 - Limits: at most 30 top-level blocks on a page; the person's whole phone holds at most 60 pages and 40 tables, so keep an app small (2–5 pages, 1–6 tables).
 - Every page needs a way in: put it in `app.bar`, or have an `entry` or `button` block open it, or (for a page with `of`, a page for one entry) have a record block's `opens` point at it.
+- A date that comes back (a subscription that renews every month, a monthly bill, a yearly check-up) should not be a plain `date` field the person has to move on by hand: use a `schedule` field (a repeat rule each entry keeps, with `lastDone` pointing at the date it was last done) or a `dateOffset` field computed from the last date (for example the next payment = the last payment + 1 month). See **Data**, and pattern 5 in `tinkrum-app-patterns.md`.
 - Give every table that a page lists an empty state: a `notice` block with `showIf: {"table": "<id>", "has": "none"}` that says how to add the first entry.
 
 ## How to read the reference
@@ -53,10 +54,11 @@ Ignore what the reference says about plans, rejections, notes, drafts, earlier r
 ## How to work
 
 1. Ask what the person wants to keep track of and do, in their words, if it is not clear. Do not ask for their actual data.
-2. Write the file. Prefer fewer, well-made pages to many thin ones. Use the person's language for every name, label and text in the app.
-3. **Check the file before you give it.** If you can run code with Node.js 18 or newer, run the Tinkrum checker: `node tinkrum-check.js app.json` (or pipe the text in: `node tinkrum-check.js -`). It is the same check Tinkrum runs when it imports a file, it is one file that needs nothing else, and it does not use the network. Your code environment usually cannot download it, so ask the person to attach it; they get it from https://tinkrum.stonetech.dev/assets/agent/tinkrum-check.js. The first line of its output is `OK` or `NOT OK`. Fix every problem it lists and run it again until it says `OK`; lines after `OK` are parts that will not work yet, so fix those too. If you cannot run Node but can run Python with `jsonschema`, validate the file against `tinkrum-app.schema.json`: that only checks the shape, so tell the person the file was not fully checked. If you cannot run code, say so and point the person to the checker page, https://tinkrum.stonetech.dev/make.
-4. Reply with the **whole file in one ```json code block**, and tell the person how to import it: copy it, then in Tinkrum open **Settings → My presets** and choose **Paste from clipboard** (or save it as a `.json` file and choose **Import from a file**).
-5. The person may come back with a list of problems from Tinkrum or from the Tinkrum app-file checker, such as `pages.0.blocks.2.look: "banner" is not a valid look; use one of …` or `pages.1.blocks.3 (block "log"): show.subtitles type is not a field of plants-care; fields of plants-care: plant, what, date, note`. A path counts from the top of the file (`pages.0` is the first page); a bare name is a block, page, table or tool id. Most problems say what to write instead. Fix every problem and send the whole file again.
+2. **Start from a pattern.** `tinkrum-app-patterns.md` (https://tinkrum.stonetech.dev/assets/agent/tinkrum-app-patterns.md) holds eight proven structures, each a complete app file that imports cleanly: a log with totals by period, a category budget against spending, a goal against progress, check-ins and streaks, recurring due items, a status pipeline, a collection with a wishlist, and a parent with child logs. Pick the one closest to what the person wants (or combine two), keep its structure, and change the names, fields and wording to fit; give every id your own app's prefix. If you cannot get the file, follow the example below.
+3. Write the file. Prefer fewer, well-made pages to many thin ones. Use the person's language for every name, label and text in the app.
+4. **Check the file before you give it.** If you can run code with Node.js 18 or newer, run the Tinkrum checker: `node tinkrum-check.js app.json` (or pipe the text in: `node tinkrum-check.js -`). It is the same check Tinkrum runs when it imports a file, it is one file that needs nothing else, and it does not use the network. Your code environment usually cannot download it, so ask the person to attach it; they get it from https://tinkrum.stonetech.dev/assets/agent/tinkrum-check.js. The first line of its output is `OK` or `NOT OK`. Fix every problem it lists and run it again until it says `OK`; lines after `OK` are parts that will not work yet, so fix those too. It may then list suggestions to make the app easier to use: apply them unless the person asked for it this way. If you cannot run Node but can run Python with `jsonschema`, validate the file against `tinkrum-app.schema.json`: that only checks the shape, so tell the person the file was not fully checked. If you cannot run code, say so and point the person to the checker page, https://tinkrum.stonetech.dev/make.
+5. Reply with the **whole file in one ```json code block**, and tell the person how to import it: copy it, then in Tinkrum open **Settings → My presets** and choose **Paste from clipboard** (or save it as a `.json` file and choose **Import from a file**).
+6. The person may come back with a list of problems from Tinkrum or from the Tinkrum app-file checker, such as `pages.0.blocks.2.look: "banner" is not a valid look; use one of …` or `pages.1.blocks.3 (block "log"): show.subtitles type is not a field of plants-care; fields of plants-care: plant, what, date, note`. A path counts from the top of the file (`pages.0` is the first page); a bare name is a block, page, table or tool id. Most problems say what to write instead. Fix every problem and send the whole file again.
 
 ## A complete example
 
@@ -226,6 +228,7 @@ Ignore what the reference says about plans, rejections, notes, drafts, earlier r
             ],
             "trailing": "watered"
           },
+          "opens": "plants-plant",
           "tools": [
             {
               "as": "button",
@@ -333,6 +336,50 @@ Ignore what the reference says about plans, rejections, notes, drafts, earlier r
           "tools": [
             {
               "tool": "plants-export"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "plants-plant",
+      "title": "Plant",
+      "icon": "🪴",
+      "of": "plants-plants",
+      "blocks": [
+        {
+          "id": "care",
+          "look": "list",
+          "source": {
+            "table": "plants-care",
+            "filter": [
+              {
+                "field": "plant",
+                "op": "is",
+                "value": "$record"
+              }
+            ],
+            "sort": {
+              "field": "date",
+              "direction": "desc"
+            },
+            "limit": 30
+          },
+          "show": {
+            "title": "what",
+            "subtitles": [
+              "note"
+            ],
+            "trailing": "date",
+            "emptyText": "No care logged yet"
+          },
+          "tools": [
+            {
+              "as": "addHere",
+              "do": "create",
+              "table": "plants-care",
+              "ask": "all",
+              "values": "$here"
             }
           ]
         }
