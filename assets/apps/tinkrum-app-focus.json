@@ -153,9 +153,9 @@
                 "limit": 3
               },
               "show": {
-                "title": "task",
+                "title": "started",
                 "subtitles": [
-                  "started"
+                  "task"
                 ],
                 "trailing": "started",
                 "format": {
@@ -649,9 +649,9 @@
                 "limit": 3
               },
               "show": {
-                "title": "task",
+                "title": "started",
                 "subtitles": [
-                  "started"
+                  "task"
                 ],
                 "trailing": "started",
                 "format": {
@@ -722,9 +722,9 @@
                 "limit": 8
               },
               "show": {
-                "title": "task",
+                "title": "started",
                 "subtitles": [
-                  "started"
+                  "task"
                 ],
                 "trailing": "started",
                 "format": {
@@ -854,6 +854,13 @@
           ]
         },
         {
+          "id": "h-done",
+          "look": "header",
+          "show": {
+            "title": "done"
+          }
+        },
+        {
           "id": "hist",
           "look": "list",
           "source": {
@@ -874,6 +881,13 @@
           "show": {
             "title": "date",
             "emptyText": "# not done yet"
+          }
+        },
+        {
+          "id": "h-sessions",
+          "look": "header",
+          "show": {
+            "title": "sessions"
           }
         },
         {

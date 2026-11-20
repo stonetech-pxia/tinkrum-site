@@ -278,10 +278,10 @@
                 "limit": 6
               },
               "show": {
-                "title": "merchant",
+                "title": "date",
                 "subtitles": [
-                  "category",
-                  "date"
+                  "merchant",
+                  "category"
                 ],
                 "trailing": "amount",
                 "emptyText": "Nothing here yet — tap + to add a spend",
@@ -677,9 +677,9 @@
             "limit": 10
           },
           "show": {
-            "title": "merchant",
+            "title": "date",
             "subtitles": [
-              "date"
+              "merchant"
             ],
             "trailing": "amount",
             "emptyText": "No spending here yet"
