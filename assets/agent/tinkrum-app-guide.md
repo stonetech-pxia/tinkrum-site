@@ -63,6 +63,16 @@ Ignore what the reference says about plans, rejections, notes, drafts, earlier r
 5. Reply with the **whole file in one ```json code block**, and tell the person how to import it: copy it, then in Tinkrum open **Settings → My presets** and choose **Paste from clipboard** (or save it as a `.json` file and choose **Import from a file**).
 6. The person may come back with a list of problems from Tinkrum or from the Tinkrum app-file checker, such as `pages.0.blocks.2.look: "banner" is not a valid look; use one of …` or `pages.1.blocks.3 (block "log"): show.subtitles type is not a field of plants-care; fields of plants-care: plant, what, date, note`. A path counts from the top of the file (`pages.0` is the first page); a bare name is a block, page, table or tool id. Most problems say what to write instead. Fix every problem and send the whole file again.
 
+## Changing an existing file
+
+The person may send you the app they already use (Tinkrum's AI page has "Change it with another AI app", which attaches the app file and often the checker) and ask you to change it. Their entries are not in the file, but they are linked to its ids, so:
+
+- **Keep every id that is already there**: the app, tables, fields, choice options, pages, blocks, quick actions and reminders. Add new things with new ids. A changed id is a new thing: the old table's entries stay on the phone but no longer show in this app.
+- Do not remove a table, a field or a choice option unless the person asks. Their entries keep the values, hidden.
+- A field's type can change only between `number` and `money`, or between `text` and `note`. For any other change (text to date, choice to number…), add a new field with a new id and leave the old one, or remove it only if the person asks.
+- When the message says which page the person came from, a request that does not name a place ("make the title bigger", "add a button") is about that page.
+- Change only what was asked; keep the rest of the file as it is, and give back the **whole** file. When the person pastes it in Tinkrum, Tinkrum sees it is the same app and offers to update it; the update can be undone.
+
 ## A complete example
 
 ```json
