@@ -80,7 +80,7 @@
         const message = `Tinkrum can import this app file. ${parts.join('\n')}\nSend the whole file again.`;
         result.append(el('p', '', ''), copyButton('Copy for your AI', message));
       } else {
-        result.append(el('p', 'note', 'Copy it, then in Tinkrum: Settings → My presets → Paste from clipboard.'));
+        result.append(el('p', 'note', 'Copy it, then in Tinkrum: Settings → Apps and presets → Add an app → Paste from clipboard.'));
       }
       return;
     }
