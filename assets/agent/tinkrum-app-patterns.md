@@ -2146,3 +2146,367 @@ How to use them:
   "tools": []
 }
 ```
+
+## 9. Join entries with amounts
+
+**Use it when** two kinds of things pair up many-to-many and each pair has data of its own (a recipe and its ingredients with amounts, an order and its products with quantities, a trip and what to pack).
+
+**How it is built**
+
+- A join table with a required link to each side and the fields of the pair (recipe items: recipe, ingredient, amount).
+- The page for one recipe (`"of"`) lists the join entries filtered by `$record`; its add-here is `{"do": "createAll", "pick": true, "from": <the other table>, "values": {<the link to it>: "$row"}}`, so the user checks several ingredients at once (those already in the recipe show as added) and then taps each row for its amount (rule 70). On a calendar the same add-here plans several recipes for the selected day.
+- Totals across the pairs chain computed fields: a rollup on the recipe (planned this week) → a lookup of it on the join table → a formula amount × times → a rollup sum on the ingredient, listed with a filter > 0 as this week's shopping list.
+
+```json
+{
+  "format": "tinkrum-app",
+  "version": 1,
+  "schemaVersion": 40,
+  "app": {
+    "id": "meals",
+    "name": "Meals",
+    "icon": "🍳",
+    "bar": [
+      "page:meals-home",
+      "page:meals-shopping",
+      "ai"
+    ],
+    "theme": {
+      "primaryColor": "#A5522B",
+      "mode": "system",
+      "colors": {},
+      "font": "clay",
+      "fontScale": 1,
+      "radius": 22,
+      "density": "comfortable",
+      "cardStyle": "soft",
+      "navStyle": "iconLabel"
+    }
+  },
+  "tables": [
+    {
+      "id": "meals-recipes",
+      "name": "Recipes",
+      "icon": "📖",
+      "fields": [
+        {
+          "id": "name",
+          "name": "Name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "times",
+          "name": "Planned this week",
+          "type": "rollup",
+          "table": "meals-plan",
+          "via": "recipe",
+          "aggregate": "count",
+          "filter": [
+            {
+              "field": "day",
+              "op": "inPeriod",
+              "value": "thisWeek"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "meals-ingredients",
+      "name": "Ingredients",
+      "icon": "🥕",
+      "fields": [
+        {
+          "id": "name",
+          "name": "Name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "unit",
+          "name": "Unit",
+          "type": "choice",
+          "options": [
+            {
+              "id": "g",
+              "label": "g"
+            },
+            {
+              "id": "ml",
+              "label": "ml"
+            },
+            {
+              "id": "pcs",
+              "label": "pcs"
+            }
+          ],
+          "default": "g"
+        },
+        {
+          "id": "week",
+          "name": "Needed this week",
+          "type": "rollup",
+          "table": "meals-items",
+          "via": "ingredient",
+          "aggregate": "sum",
+          "field": "need"
+        }
+      ]
+    },
+    {
+      "id": "meals-items",
+      "name": "Recipe items",
+      "icon": "🧾",
+      "fields": [
+        {
+          "id": "recipe",
+          "name": "Recipe",
+          "type": "link",
+          "table": "meals-recipes",
+          "required": true
+        },
+        {
+          "id": "ingredient",
+          "name": "Ingredient",
+          "type": "link",
+          "table": "meals-ingredients",
+          "required": true
+        },
+        {
+          "id": "amount",
+          "name": "Amount",
+          "type": "number"
+        },
+        {
+          "id": "times",
+          "name": "Times this week",
+          "type": "lookup",
+          "via": "recipe",
+          "field": "times"
+        },
+        {
+          "id": "need",
+          "name": "Needed this week",
+          "type": "formula",
+          "expression": "{amount} * {times}"
+        }
+      ]
+    },
+    {
+      "id": "meals-plan",
+      "name": "Meal plan",
+      "icon": "🗓️",
+      "fields": [
+        {
+          "id": "recipe",
+          "name": "Recipe",
+          "type": "link",
+          "table": "meals-recipes",
+          "required": true
+        },
+        {
+          "id": "day",
+          "name": "Day",
+          "type": "date",
+          "default": "today",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "id": "meals-home",
+      "title": "Recipes",
+      "icon": "📖",
+      "blocks": [
+        {
+          "id": "plan",
+          "look": "calendar",
+          "source": {
+            "table": "meals-plan",
+            "limit": 10,
+            "group": {
+              "unit": "day",
+              "by": "day"
+            }
+          },
+          "show": {
+            "title": "recipe"
+          },
+          "tools": [
+            {
+              "as": "addHere",
+              "label": "Plan recipes",
+              "do": "createAll",
+              "table": "meals-plan",
+              "from": "meals-recipes",
+              "pick": true,
+              "values": {
+                "recipe": "$row"
+              }
+            }
+          ]
+        },
+        {
+          "id": "recipes",
+          "look": "list",
+          "source": {
+            "table": "meals-recipes",
+            "sort": {
+              "field": "name",
+              "direction": "asc"
+            }
+          },
+          "show": {
+            "title": "name",
+            "trailing": "times"
+          },
+          "opens": "meals-recipe",
+          "tools": [
+            {
+              "as": "addHere",
+              "do": "create",
+              "table": "meals-recipes",
+              "ask": "all",
+              "values": "$here"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "meals-recipe",
+      "title": "Recipe",
+      "icon": "📖",
+      "of": "meals-recipes",
+      "blocks": [
+        {
+          "id": "h",
+          "look": "header",
+          "show": {
+            "title": "Ingredients"
+          }
+        },
+        {
+          "id": "items",
+          "look": "list",
+          "source": {
+            "table": "meals-items",
+            "filter": [
+              {
+                "field": "recipe",
+                "op": "is",
+                "value": "$record"
+              }
+            ]
+          },
+          "show": {
+            "title": "ingredient",
+            "trailing": "amount",
+            "emptyText": "No ingredients yet"
+          },
+          "tools": [
+            {
+              "as": "addHere",
+              "label": "Add ingredients",
+              "do": "createAll",
+              "table": "meals-items",
+              "from": "meals-ingredients",
+              "pick": true,
+              "values": {
+                "ingredient": "$row"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "meals-shopping",
+      "title": "Shopping",
+      "icon": "🛒",
+      "blocks": [
+        {
+          "id": "h",
+          "look": "header",
+          "show": {
+            "title": "This week",
+            "subtitle": "Totals from the meal plan"
+          }
+        },
+        {
+          "id": "need",
+          "look": "list",
+          "source": {
+            "table": "meals-ingredients",
+            "filter": [
+              {
+                "field": "week",
+                "op": "gt",
+                "value": 0
+              }
+            ],
+            "sort": {
+              "field": "name",
+              "direction": "asc"
+            }
+          },
+          "show": {
+            "title": "name",
+            "subtitles": [
+              "unit"
+            ],
+            "trailing": "week"
+          },
+          "tools": [
+            {
+              "as": "addHere",
+              "do": "create",
+              "table": "meals-ingredients",
+              "ask": "all",
+              "values": "$here"
+            }
+          ],
+          "opens": "meals-ingredient"
+        }
+      ]
+    },
+    {
+      "id": "meals-ingredient",
+      "title": "Ingredient",
+      "icon": "🥕",
+      "of": "meals-ingredients",
+      "blocks": [
+        {
+          "id": "h",
+          "look": "header",
+          "show": {
+            "title": "Used in"
+          }
+        },
+        {
+          "id": "used",
+          "look": "list",
+          "source": {
+            "table": "meals-items",
+            "filter": [
+              {
+                "field": "ingredient",
+                "op": "is",
+                "value": "$record"
+              }
+            ]
+          },
+          "show": {
+            "title": "recipe",
+            "trailing": "amount"
+          }
+        }
+      ]
+    }
+  ],
+  "tools": []
+}
+```
