@@ -11,3 +11,5 @@ The Tinkrum portal: static pages (`index.html`, `make.html` + `styles.css`), no 
   for the checker page and `tinkrum-check.js` for an AI to run itself (`node tinkrum-check.js app.json`): both are
   the same checks Tinkrum runs on import. Do not edit them here: in the app repo run
   `node scripts/build-agent-kit.mjs ../tinkrum-site` (from the repo root) after the guide changes.
+
+- `/open` (`open.html` + `open.js`, routed by `_redirects`) reads a compressed app or setup from `#a=`, checks it with the same `checker.js`, and reuses `preview.js` before offering the native import link. The fragment never enters an HTTP request. English, Chinese and French follow the browser language and can be selected on the page. There is no network API or analytics. The iPhone store entry awaits a published App Store URL.

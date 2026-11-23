@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="no-referrer" />
+    <title>Open in Tinkrum</title>
+    <link rel="icon" href="assets/img/logo-mark.png" type="image/png" />
+    <link rel="stylesheet" href="styles.css?v=5" />
+  </head>
+  <body>
+    <header class="nav">
+      <div class="wrap">
+        <a class="brand" href="index.html"
+          ><img
+            src="assets/img/logo-mark.png"
+            alt=""
+            width="30"
+            height="30"
+          />Tinkrum</a
+        >
+        <select id="language" aria-label="Language">
+          <option value="en">English</option>
+          <option value="zh">中文</option>
+          <option value="fr">Français</option>
+        </select>
+      </div>
+    </header>
+    <main>
+      <section class="sec">
+        <div class="wrap">
+          <div class="sec-head">
+            <h1 id="heading">Open in Tinkrum</h1>
+            <p id="privacy" class="lede"></p>
+          </div>
+          <div id="result" class="result" role="status"></div>
+          <div id="actions" hidden>
+            <p><a class="btn" id="open-app"></a></p>
+            <p>
+              <button class="btn small" id="copy-file" type="button"></button>
+            </p>
+            <p id="install-note" class="note"></p>
+            <p>
+              <a
+                class="btn small"
+                id="play"
+                href="https://play.google.com/store/apps/details?id=dev.stonetech.tinkrum"
+                rel="noreferrer"
+                >Google Play</a
+              >
+              <span id="ios-note"></span>
+            </p>
+            <p id="paste-note" class="note"></p>
+          </div>
+          <div id="preview" class="preview" hidden></div>
+          <p id="manual-copy" hidden>
+            <textarea id="copy-text" readonly aria-label="App file"></textarea>
+          </p>
+        </div>
+      </section>
+    </main>
+    <script src="assets/agent/checker.js" defer></script>
+    <script src="preview.js" defer></script>
+    <script src="open.js" defer></script>
+  </body>
+</html>

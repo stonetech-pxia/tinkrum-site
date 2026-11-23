@@ -42,7 +42,8 @@
     preview.hidden = true;
     if (check.ok && typeof window.tinkrumPreview === 'function') {
       try {
-        preview.append(window.tinkrumPreview(check.file));
+        for (const file of check.config ? window.tinkrumSetupPreviewFiles(check.config) : [check.file])
+          preview.append(window.tinkrumPreview(file));
         preview.hidden = false;
       } catch (e) {
         console.error(e);
