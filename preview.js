@@ -18,7 +18,43 @@
     return node;
   }
   const plain = (s) => String(s ?? '').replace(/\*\*|\*|`/g, '').replace(/\[([^\]]*)\]\([^)]*\)/g, '$1');
-  const isEmoji = (icon) => typeof icon === 'string' && !/^[a-z-]+$/.test(icon);
+  const isDrawn = (icon) => typeof icon === 'string' && icon.startsWith('my:');
+  const isEmoji = (icon) => typeof icon === 'string' && !/^[a-z-]+$/.test(icon) && !isDrawn(icon);
+  // An icon drawn in the file ("my:<id>", from the file's icons): path data on a 24 by 24 canvas, in the colour of
+  // the text around it. The checker has already accepted the paths; they are set as attributes, never as HTML.
+  const SVG_NS = 'http://www.w3.org/2000/svg';
+  function drawnIcon(icon, icons) {
+    const def = isDrawn(icon) ? icons?.[icon.slice(3)] : null;
+    if (!def || !Array.isArray(def.paths)) return null;
+    const svg = document.createElementNS(SVG_NS, 'svg');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('width', '1.2em');
+    svg.setAttribute('height', '1.2em');
+    svg.setAttribute('aria-hidden', 'true');
+    const add = (d) => {
+      const path = document.createElementNS(SVG_NS, 'path');
+      path.setAttribute('d', d);
+      if (def.stroke) {
+        for (const [k, v] of [['fill', 'none'], ['stroke', 'currentColor'], ['stroke-width', '2'], ['stroke-linecap', 'round'], ['stroke-linejoin', 'round']]) path.setAttribute(k, v);
+      } else {
+        path.setAttribute('fill', 'currentColor');
+        path.setAttribute('fill-rule', 'evenodd');
+      }
+      svg.append(path);
+    };
+    // Filled paths are one shape (a path inside another is a hole), as in the app.
+    if (def.stroke) def.paths.forEach((d) => add(String(d)));
+    else add(def.paths.map(String).join(' '));
+    return svg;
+  }
+  /** A span for an icon: the drawn icon, the emoji, or the fallback text. */
+  function iconSpan(cls, icon, icons, fallback) {
+    const span = el('span', cls);
+    const svg = drawnIcon(icon, icons);
+    if (svg) span.append(svg);
+    else span.textContent = isEmoji(icon) ? icon : fallback;
+    return span;
+  }
 
   window.tinkrumPreview = function (file) {
     const tables = new Map(file.tables.map((t) => [t.id, t]));
@@ -185,7 +221,7 @@
         case 'entry': {
           const target = typeof block.opens === 'string' && block.opens.startsWith('page:') ? pages.get(block.opens.slice(5)) : null;
           node = opener(el('div', 'pv-card pv-entry'), block.opens);
-          node.append(el('span', 'pv-icon', isEmoji(show.icon) ? show.icon : ''), el('b', '', show.title || target?.title || 'Entry'), el('span', 'pv-chev', '›'));
+          node.append(iconSpan('pv-icon', show.icon, file.icons, ''), el('b', '', show.title || target?.title || 'Entry'), el('span', 'pv-chev', '›'));
           break;
         }
         case 'action': {
@@ -300,7 +336,7 @@
         const p = id ? pages.get(id) : null;
         const tab = el('button', `pv-tab ${id === current ? 'on' : ''}`);
         tab.type = 'button';
-        tab.append(el('span', 'pv-tab-icon', p && isEmoji(p.icon) ? p.icon : id ? '▢' : '✦'), el('small', '', p ? p.title : 'Tink'));
+        tab.append(iconSpan('pv-tab-icon', p ? p.icon : null, file.icons, id ? '▢' : '✦'), el('small', '', p ? p.title : 'Tink'));
         if (id) tab.addEventListener('click', () => go(id, false));
         else tab.disabled = true;
         bar.append(tab);
