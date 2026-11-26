@@ -7,7 +7,7 @@
   <meta name="description" content="What the Tinkrum app and website do with your data: what stays on your phone, what is sent, who receives it, and how to delete it.">
   <meta name="theme-color" content="#f5efe8">
   <link rel="icon" href="assets/img/logo-mark.png" type="image/png">
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
 
@@ -23,10 +23,9 @@
     <div class="wrap">
       <p class="kicker">Tinkrum</p>
       <h1>Privacy policy</h1>
-      <p class="draft"><strong>Draft, not yet in force.</strong> Highlighted text still has to be filled in.</p>
-      <p class="updated">Last updated: <mark>[DATE OF PUBLICATION]</mark></p>
+      <p class="updated">Last updated: 26 November 2026</p>
 
-      <p>This policy covers the Tinkrum app for phones (Android package <code>dev.stonetech.tinkrum</code>) and this website. Tinkrum is published by <mark>[PUBLISHER NAME, AS SHOWN IN THE STORE LISTING]</mark> (“we”). Privacy contact: <mark>[PRIVACY CONTACT EMAIL]</mark>. <mark>[POSTAL ADDRESS, IF ONE MUST BE PUBLISHED]</mark></p>
+      <p>This policy covers the Tinkrum app for phones (Android package <code>dev.stonetech.tinkrum</code>) and this website. Tinkrum is published by Stonetech (“we”). Privacy contact: <a href="mailto:xia.pengda@gmail.com">xia.pengda@gmail.com</a>.</p>
 
       <h2>In short</h2>
       <ul>
@@ -56,7 +55,7 @@
         <li>a random identifier that Tinkrum creates on your phone (it is not derived from your device or your identity), your platform and the app version.</li>
       </ul>
       <p>Your entries, files, file names, recognised text and recordings are not sent. Anything you write in the request itself, or in names and page text, is sent, so leave private details out.</p>
-      <p>Our server forwards the request to <strong>Anthropic</strong>, whose Claude models write the change, and returns the reply. <strong>Our server does not save the text of requests or replies.</strong> It uses the random identifier to limit how much each installation can use the service, and writes a technical log with a shortened one-way hash of that identifier, the size, cost and duration of each request, and errors. The log contains no request or reply text and no IP address. It is kept for <mark>[LOG RETENTION PERIOD]</mark>.</p>
+      <p>Our server forwards the request to <strong>Anthropic</strong>, whose Claude models write the change, and returns the reply. <strong>Our server does not save the text of requests or replies.</strong> It uses the random identifier to limit how much each installation can use the service, and writes a technical log with a shortened one-way hash of that identifier, the size, cost and duration of each request, and errors. The log contains no request or reply text and no IP address. We keep it for no longer than 12 months, then delete it.</p>
       <p>Traffic to our server passes through <strong>Cloudflare</strong>, which processes it, including your IP address, to deliver and protect the connection.</p>
       <p>Anthropic states that it deletes API inputs and outputs within 30 days, with exceptions: for example when required by law or to enforce its usage policy (content flagged by its safety systems may be kept for up to 2 years, and safety scores for up to 7 years). Anthropic states that by default it does not use API data to train its models. See Anthropic’s <a href="https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data">data retention</a> and <a href="https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training">model training</a> pages and its <a href="https://www.anthropic.com/legal/privacy">privacy policy</a>.</p>
 
@@ -64,7 +63,7 @@
       <p>Your phone sends the request and app setup described above, without the Tinkrum identifier, directly to the provider you set up: Anthropic, or the compatible service whose address you entered. It does not pass through our server. That provider’s terms and privacy policy apply. Your key is kept in your phone’s secure storage and is sent only to that provider; testing the connection or listing models also contacts it.</p>
 
       <h2 id="requests">“Tell us you need this”</h2>
-      <p>When Tink cannot do something, you may see a button to tell us. Only if you tap it, our server receives and stores that one sentence, your language, why it could not be done, which kind of AI you use, your platform and the app version, with the time. The random identifier is used to limit repeated sending and is not stored with the sentence. No entries, files or app setup are sent. Stored sentences are kept for <mark>[FEATURE REQUEST RETENTION PERIOD]</mark>. You can hide the button under Settings → Tink.</p>
+      <p>When Tink cannot do something, you may see a button to tell us. Only if you tap it, our server receives and stores that one sentence, your language, why it could not be done, which kind of AI you use, your platform and the app version, with the time. The random identifier is used to limit repeated sending and is not stored with the sentence. No entries, files or app setup are sent. We keep stored sentences for no longer than 12 months, then delete them. You can hide the button under Settings → Tink.</p>
 
       <h2 id="downloads">Downloads</h2>
       <p>Tinkrum downloads some things when needed, such as extra tools, language data and models, and may check our list of downloadable tools when it starts (at most once a day). These requests carry none of your content and not the random identifier. Depending on the item, they go to our file server (<code>morph-tools.stonetech.dev</code>, on Cloudflare), <a href="https://www.jsdelivr.com/terms/privacy-policy">jsDelivr</a>, <a href="https://huggingface.co/privacy">Hugging Face</a>, Google or Apple. As with any download, the server sees your IP address and basic technical details of the request.</p>
@@ -84,7 +83,7 @@
         <li><strong>Camera:</strong> to take photos and scan documents.</li>
         <li><strong>Microphone:</strong> to record audio when you start a recording, including while it continues in the background.</li>
         <li><strong>Speech recognition</strong> (iPhone): to turn recordings into text on your phone.</li>
-        <li><strong>Photos and videos:</strong> to work with the ones you choose and to save results to your library when you ask. The Android app also lists permissions to read photos, videos and audio.</li>
+        <li><strong>Photos and videos:</strong> to work with the ones you choose and to save results to your library when you ask. On Android, Tinkrum does not ask to read your photo library: you pick items in the system’s pickers or share them to Tinkrum. On Android 12 and earlier it also lists the older storage permissions, which saving can need.</li>
         <li><strong>Notifications:</strong> for your reminders and the progress of long tasks.</li>
         <li><strong>Network, background work and start-up</strong> (Android): for the connections described here, to finish long tasks, and to restore your reminders after the phone restarts.</li>
       </ul>
@@ -100,7 +99,7 @@
         <li>Copies you saved, shared or exported elsewhere are not removed.</li>
       </ul>
       <h3>With us and others</h3>
-      <p>To ask for a copy or the deletion of what our server holds, write to <mark>[PRIVACY CONTACT EMAIL]</mark>. We have no account that links stored data to you, so tell us what you sent and roughly when. For data held by Anthropic, Google or another AI provider, their policies linked above also apply.</p>
+      <p>To ask for a copy or the deletion of what our server holds, write to <a href="mailto:xia.pengda@gmail.com">xia.pengda@gmail.com</a>. We have no account that links stored data to you, so tell us what you sent and roughly when. For data held by Anthropic, Google or another AI provider, their policies linked above also apply.</p>
 
       <h2 id="security">Security</h2>
       <p>Connections to our server, to Anthropic and for downloads use HTTPS. A service of your own must use HTTPS too, unless it runs on the phone itself. API keys are kept in the phone’s secure storage, and our own AI key stays on the server. No method of storage or transmission is completely secure.</p>
@@ -112,7 +111,7 @@
       <p>We will update this page and its date when what Tinkrum does with data changes. If our server is ever to save the text of AI requests or replies, this page will say so before that starts.</p>
 
       <h2 id="contact">Contact</h2>
-      <p><mark>[PUBLISHER NAME]</mark> — <mark>[PRIVACY CONTACT EMAIL]</mark></p>
+      <p>Stonetech — <a href="mailto:xia.pengda@gmail.com">xia.pengda@gmail.com</a></p>
     </div>
   </article>
 </main>

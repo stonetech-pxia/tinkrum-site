@@ -341,5 +341,3 @@ button.btn { cursor: pointer; }
 .legal li { margin-bottom: 8px; }
 .legal code { font: 400 .85em ui-monospace, 'SF Mono', Menlo, monospace; overflow-wrap: anywhere; }
 .legal .updated { color: var(--caption); font-size: 15px; }
-.legal .draft { padding: 14px 18px; border: 2px dashed var(--clay-bright); border-radius: 14px; background: var(--card); }
-.legal mark { background: #ffe08a; color: var(--ink); padding: 0 4px; border-radius: 4px; font-weight: 700; }
